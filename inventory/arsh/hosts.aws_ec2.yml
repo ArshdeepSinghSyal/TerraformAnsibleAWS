@@ -1,0 +1,26 @@
+# plugin: aws_ec2
+# regions:
+#   - us-east-1
+# filters:
+#   # all instances with their `environment_name` tag set to `dev`
+#   tag:environment: arsh
+
+# groups:
+#   visualserver: "'Visual Instance' == (tags.role)"
+#   webserver: "'Instance' == (tags.role)"
+all:
+  children:
+    webserver: 
+      hosts:
+        ec2-3-93-147-28.compute-1.amazonaws.com
+      vars:
+        ansible_user: ec2-user
+        ansible_ssh_private_key_file: '~/.ssh/arshdeep.pem'
+        ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    visualserver: 
+      hosts:
+        ec2-3-84-205-191.compute-1.amazonaws.com
+      vars:
+        ansible_user: ec2-user
+        ansible_ssh_private_key_file: '~/.ssh/arshdeep.pem'
+        ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
