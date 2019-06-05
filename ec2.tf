@@ -40,6 +40,15 @@ resource "aws_security_group" "arsh-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+  
+    #cidr_blocks = ["all"]
+    self= true
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -50,7 +59,7 @@ resource "aws_security_group" "arsh-sg" {
 
 resource "aws_instance" "visualserver" {
   ami             = "ami-0c6b1d09930fac512"
-  instance_type   = "t2.micro"
+  instance_type   = "t2.medium"
   security_groups = ["${aws_security_group.arsh-sg.name}"]
   key_name        = "arshdeep"
   tags = {
@@ -60,7 +69,7 @@ resource "aws_instance" "visualserver" {
 
 resource "aws_instance" "webserver" {
   ami             = "ami-0c6b1d09930fac512"
-  instance_type   = "t2.micro"
+  instance_type   = "t2.medium"
   security_groups = ["${aws_security_group.arsh-sg.name}"]
   key_name        = "arshdeep"
   tags = {
