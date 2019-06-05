@@ -44,8 +44,6 @@ resource "aws_security_group" "arsh-sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-  
-    #cidr_blocks = ["all"]
     self= true
   }
 
