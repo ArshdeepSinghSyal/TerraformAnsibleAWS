@@ -48,22 +48,22 @@ resource "aws_security_group" "arsh-sg" {
   }
 }
 
-resource "aws_instance" "ArshTerraformVisualInstance" {
+resource "aws_instance" "visualserver" {
   ami             = "ami-0c6b1d09930fac512"
   instance_type   = "t2.micro"
   security_groups = ["${aws_security_group.arsh-sg.name}"]
   key_name        = "arshdeep"
   tags = {
-    Name = "ArshTerraformVisualInstance"
+    Name = "visualserver"
   }
 }
 
-resource "aws_instance" "ArshTerraformWebInstance" {
+resource "aws_instance" "webserver" {
   ami             = "ami-0c6b1d09930fac512"
   instance_type   = "t2.micro"
   security_groups = ["${aws_security_group.arsh-sg.name}"]
   key_name        = "arshdeep"
   tags = {
-    Name = "ArshTerraformWebInstance"
+    Name = "webserver"
   }
 }

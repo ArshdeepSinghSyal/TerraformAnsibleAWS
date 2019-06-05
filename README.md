@@ -133,7 +133,15 @@ Create a new file in inventory with the same structure as inventory and add the 
 
 4. Make sure that your aws private key (###.pem) is present in the ~/.ssh directory.
 
-5. Run the master playbook
+5. Rxecute the terraform script to instantiate the virtual machines
+
+'''
+terraform init
+terraform plan
+terraform apply
+'''
+
+6. Run the master playbook
 
     ```ansible-playbook site-playbook.yml```
     <br>(to run it with default values)
@@ -175,17 +183,13 @@ The project has 5 working ansible roles:
 
 1. **Visual Server:**<br>
     It has the following 4 taks defined under it:
-    - Create a security group with the required permisions.
-    - Provisions a amazon linux 2 machine from aws of t2.medium tier and sets up ssh access into the machine.
-    -  Adds the newly provisioned instance to a host group - visualserver.
-    - Waits for SSH to come up.
+    -  Gathers information abot the running instances.
+    -  Adds the provisioned instance to a host group - visualserver.
 
 2. **Web Server:**<br>
     It has the following 4 taks defined under it:
-    - Create a security group with the required permisions.
-    - Provisions a amazon linux 2 machine from aws of t2.medium tier and sets up ssh access into the machine.
-    -  Adds the newly provisioned instance to a host group - webserver.
-    - Waits for SSH to come up.
+    -  Gathers information abot the running instances.
+    -  Adds the provisioned instance to a host group - webserver.
 
 3. **Elasticsearch:**<br>
     It has the following 8 tasks defined under it:
@@ -219,4 +223,5 @@ The project has 5 working ansible roles:
 
 6. **Kibana Dashboard Import**<br>
     It has the following task:
-    - Import the already created dashboard - mydash.json 
+    -  Wait for 300 seconds for kibana servere to be ready before importing dashboard.
+    -  Import the already created dashboard - mydash.json 
